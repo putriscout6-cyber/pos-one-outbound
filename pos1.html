@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pos 1 - Jejak Pertama</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f4f4;
+    margin:0;
+    padding:20px;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+.page{
+    display:none;
+}
+
+.active{
+    display:block;
+}
+
+h1,h2{
+    color:#2c3e50;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+
+button{
+    margin-top:15px;
+    padding:12px 20px;
+    border:none;
+    border-radius:8px;
+    background:#2c3e50;
+    color:white;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    opacity:0.9;
+}
+
+.pesan{
+    margin-top:15px;
+    font-weight:bold;
+}
+
+.keyword{
+    background:#e8f5e9;
+    border:2px solid green;
+    padding:20px;
+    text-align:center;
+    font-size:28px;
+    font-weight:bold;
+    border-radius:10px;
+    margin-top:15px;
+}
+
+.petunjuk{
+    background:#fff3cd;
+    padding:15px;
+    border-radius:10px;
+    margin-top:15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+<h1>🧭 POS 1 - JEJAK PERTAMA</h1>
+
+<p>
+Selamat datang, Penjelajah.
+</p>
+
+<p>
+Perjalanan tidak dimulai dari seberapa jauh kalian melangkah,
+tetapi dari kemampuan menemukan petunjuk yang tersembunyi.
+</p>
+
+<p>
+Di sekitar pos ini telah tersebar beberapa huruf.
+Temukan seluruh huruf tersebut, kemudian susun menjadi sebuah kata
+yang memiliki makna penting bagi setiap warga negara Indonesia.
+</p>
+
+<button onclick="nextPage(2)">MULAI MISI</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+<h2>🔎 Temukan dan Susun</h2>
+
+<p>
+Apakah seluruh huruf telah ditemukan?
+Susun huruf-huruf tersebut menjadi kata yang benar.
+</p>
+
+<input type="text" id="kataInput" placeholder="Masukkan kata...">
+
+<button onclick="cekKata()">PERIKSA</button>
+
+<div class="pesan" id="hasilKata"></div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+<h2>🔐 Sandi A-Z</h2>
+
+<p>
+Bagus.
+Kini ubahlah kata tersebut menggunakan Sandi A-Z.
+</p>
+
+<p>
+Masukkan hasil sandi yang benar.
+</p>
+
+<input type="text" id="sandiInput" placeholder="Masukkan hasil sandi...">
+
+<button onclick="cekSandi()">KIRIM JAWABAN</button>
+
+<div class="pesan" id="hasilSandi"></div>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="page4">
+
+<h2>🏕️ Keyword Ditemukan</h2>
+
+<p>
+Selamat.
+Kalian telah menyelesaikan Pos 1.
+</p>
+
+<p>
+Simpan keyword berikut dan jangan sampai hilang.
+</p>
+
+<div class="keyword">
+TANAH AIR
+</div>
+
+<div class="petunjuk">
+<b>Petunjuk Pos 2:</b><br><br>
+
+Untuk menemukan tujuan berikutnya,
+carilah tempat dimana air berasal dan tenaga bekerja tanpa henti.
+Dengarkan suara yang membantu air mengalir menuju kehidupan.
+</div>
+
+<button onclick="nextPage(5)">BUKA PETUNJUK POS 2</button>
+
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="page5">
+
+<h2>➡️ POS BERIKUTNYA</h2>
+
+<p>
+Kalian telah membuka petunjuk perjalanan berikutnya.
+</p>
+
+<p>
+Tujuan selanjutnya berada di sekitar:
+</p>
+
+<h2>💧 SUMUR</h2>
+
+<h2>⚙️ DINAMO AIR</h2>
+
+<p>
+Lanjutkan perjalanan dan temukan QR Code Pos 2.
+</p>
+
+</div>
+
+</div>
+
+<script>
+
+function nextPage(pageNumber){
+
+document.querySelectorAll(".page").forEach(page=>{
+page.classList.remove("active");
+});
+
+document.getElementById("page"+pageNumber).classList.add("active");
+}
+
+function cekKata(){
+
+let jawaban =
+document.getElementById("kataInput")
+.value
+.trim()
+.toUpperCase();
+
+if(jawaban === "TANAH AIR"){
+
+document.getElementById("hasilKata").innerHTML =
+"✅ Kata benar! Lanjut ke Sandi A-Z.";
+
+setTimeout(()=>{
+nextPage(3);
+},1500);
+
+}else{
+
+document.getElementById("hasilKata").innerHTML =
+"❌ Kata belum tepat. Coba lagi.";
+}
+}
+
+function cekSandi(){
+
+let jawaban =
+document.getElementById("sandiInput")
+.value
+.trim()
+.toUpperCase();
+
+if(jawaban === "GZMZS ZRI"){
+
+document.getElementById("hasilSandi").innerHTML =
+"✅ Jawaban benar!";
+
+setTimeout(()=>{
+nextPage(4);
+},1500);
+
+}else{
+
+document.getElementById("hasilSandi").innerHTML =
+"❌ Jawaban salah. Coba lagi.";
+}
+}
+
+</script>
+
+</body>
+</html>
